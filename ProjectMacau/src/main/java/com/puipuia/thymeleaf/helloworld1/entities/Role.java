@@ -2,6 +2,7 @@ package com.puipuia.thymeleaf.helloworld1.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -16,6 +17,7 @@ import javax.persistence.ManyToMany;
 public class Role {
 
 	@Id
+	@Column(name="name")
 	private String name;
 	@ManyToMany(mappedBy = "roles")
 	private List<User> users;

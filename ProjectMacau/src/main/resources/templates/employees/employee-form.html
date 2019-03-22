@@ -3,57 +3,60 @@
 
 <head>
     <!-- Required meta tags -->
+   <!-- Bootstrap -->
+	
+ <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" th:integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" th:crossorigin="anonymous">
 
-	<title>Save Employee</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+     <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+     <link rel="stylesheet" th:href="@{/css/css/font-awesome.min.css}">
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"  src="/js/main.js"></script>
+    
+	<title>Sign Up</title>
 </head>
+
 
 <body>
 
 	<div class="container">
 	
-		<h3>Employee Directory</h3>
+		<h3>Sign Up</h3>
 		<hr>
+	
 		
-		<div class="alert alert-info" th:if="${exist}">
-		<p class="text text-center">
-		User with this Email already exist
-		</p>
-		
-		</div>
-		
-		<p class="h4 mb-4">Save Employee</p>
+		<p class="h4 mb-4">Save User</p>
 		
 		
 		
 		
 	
-		<form action="#" th:action="@{/employees/showFormForAdd}"
-						 th:object="${employee}" method="POST">
+		<form action="#" th:action="/register"
+						 th:object="${user}" method="POST">
 		
-			<input type="text" th:field="*{firstName}"
-					class="form-control mb-4 col-4" placeholder="First name">
-					
-				<div class="text text-danger" th:if="${#fields.hasErrors('firstName')}"
-				th:errors="*{firstName}">
-				</div>
-
-			<input type="text" th:field="*{lastName}"
-					class="form-control mb-4 col-4" placeholder="Last name">
-					
-					
-				<div class="text text-danger" th:if="${#fields.hasErrors('lastName')}"
-				th:errors="*{lastName}">
-				</div>
-
 			<input type="text" th:field="*{email}"
 					class="form-control mb-4 col-4" placeholder="Email">
-					<div class="text text-danger" th:if="${#fields.hasErrors('email')}"
-					th:errors="*{email}">
+					
+				<div class="text text-danger" th:if="${#fields.hasErrors('email')}"
+				th:errors="*{email}">
+				</div>
+
+			<input type="text" th:field="*{name}"
+					class="form-control mb-4 col-4" placeholder="name">
+					
+					
+				<div class="text text-danger" th:if="${#fields.hasErrors('name')}"
+				th:errors="*{name}">
+				</div>
+
+			<input type="text" th:field="*{password}"
+					class="form-control mb-4 col-4" placeholder="password">
+					<div class="text text-danger" th:if="${#fields.hasErrors('password')}"
+					th:errors="*{password}">
 					
 					</div>
 				
@@ -63,7 +66,7 @@
 	
 		<hr>
 		
-		<a th:href="@{/employees/list}" class="btn btn-info col-3">Back to Employees List</a>
+		<a th:href="@{/hello}" class="btn btn-info col-3">Back to Employees List</a>
 		
 	</div>
 	

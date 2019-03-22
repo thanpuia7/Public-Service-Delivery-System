@@ -16,19 +16,23 @@ import javax.validation.constraints.NotEmpty;
 public class Task {
 	@Id
 	@GeneratedValue
+	@Column(name="id")
 	private Long id;
 	
 	@NotEmpty
+	@Column(name="date")
 	private String date;
 	
-	@NotEmpty
+	@NotEmpty(message="Name field should not be empty")
+	@Column(name="startTime")
 	private String startTime;
 	
-	@NotEmpty
+	@NotEmpty(message="Name field should not be empty")
+	@Column(name="stopTime")
 	private String stopTime;
 	
-	@NotEmpty
-	@Column(length=1000)
+	@NotEmpty(message="Name field should not be empty")
+	@Column(name="description")
 	private String description;
 	
 	@ManyToOne

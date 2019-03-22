@@ -37,11 +37,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.authorizeRequests().antMatchers("/register", "/", "/about", "/login", "/css/**", "/webjars/**").permitAll()
+		http.authorizeRequests().antMatchers("/register", "/", "/about", "/Login", "/css/**", "/webjars/**").permitAll()
 				.antMatchers("/profile").hasAnyRole("USER,ADMIN")
 				.antMatchers("/users","/addTask").hasRole("ADMIN")
-				.and().formLogin().loginPage("/login").permitAll()
-				.defaultSuccessUrl("/profile").and().logout().logoutSuccessUrl("/login");
+				.and().formLogin().loginPage("/Login").permitAll()
+				.defaultSuccessUrl("/profile").and().logout().logoutSuccessUrl("/Login");
 	}
 
 }

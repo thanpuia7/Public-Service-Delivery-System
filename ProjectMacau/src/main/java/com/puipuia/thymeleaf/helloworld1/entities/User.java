@@ -24,14 +24,16 @@ public class User {
 	
 	@Id
 	@Email
-	@NotEmpty
-	@Column(unique=true)
+	@NotEmpty(message="Name field should not be empty")
+	@Column(name="email")
 	private String email;
 	
-	@NotEmpty
+	@NotEmpty(message="Name field should not be empty")
+	@Column(name="name")
 	private String name;
 	
-	@Size(min=4)
+	@Size(min=2,max=20,message="Length should be in between 2 to 10")
+	@Column(name="password")
 	private String password;
 	
 	@OneToMany(mappedBy="user", cascade=CascadeType.ALL)
