@@ -5,12 +5,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -32,19 +32,19 @@ public class User {
 	@Column(name="name")
 	private String name;
 	
-	@Size(min=2,max=20,message="Length should be in between 2 to 10")
+	@NotEmpty(message="Name field should not be empty")
 	@Column(name="password")
 	private String password;
 	
-	@OneToMany(mappedBy="user", cascade=CascadeType.ALL)
-	private List<Task> tasks  ;
-	
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name = "USER_ROLES", joinColumns={
+
+	@ManyToMany(fetch=FetchType.LAZY,
+			cascade= {CascadeType.ALL
+			})
+	@JoinTable(name = "USER_ROLE", joinColumns={
 			@JoinColumn(name = "USER_EMAIL", referencedColumnName = "email") }, inverseJoinColumns = {
 					@JoinColumn(name = "ROLE_NAME", referencedColumnName = "name") })
 	
-	private List<Role> roles;
+	private List<Role> role;
 	
 	public String getEmail() {
 		return email;
@@ -64,17 +64,13 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public List<Task> getTask() {
-		return tasks;
-	}
-	public void setTask(List<Task> tasks) {
-		this.tasks = tasks;
-	}
+	
+	
 	public List<Role> getRoles() {
-		return roles;
+		return role;
 	}
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
+	public void setRoles(List<Role> role) {
+		this.role = role;
 	}
 	
 	

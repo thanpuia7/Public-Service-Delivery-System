@@ -2,9 +2,13 @@ package com.puipuia.thymeleaf.helloworld1.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 
@@ -19,8 +23,19 @@ public class Role {
 	@Id
 	@Column(name="name")
 	private String name;
-	@ManyToMany(mappedBy = "roles")
-	private List<User> users;
+	
+	
+@ManyToMany(fetch=FetchType.LAZY,
+			cascade= {CascadeType.ALL
+				})
+	@JoinTable(
+			name = "USER_ROLE",
+			joinColumns=@JoinColumn(name = "ROLE_NAME"),
+			inverseJoinColumns=@JoinColumn(name = "USER_EMAIL", referencedColumnName = "email") 
+			)
+					
+	
+	private List<User> user;
 
 	public String getName() {
 		return name;
@@ -31,16 +46,16 @@ public class Role {
 	}
 
 	public List<User> getUsers() {
-		return users;
+		return user;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUsers(List<User> user) {
+		this.user = user;
 	}
 
-	public Role(String name, List<User> users) {
+	public Role(String name, List<User> user) {
 		this.name = name;
-		this.users = users;
+		this.user = user;
 	}
 
 	public Role() {

@@ -36,6 +36,8 @@ public class RegisterController {
 			return "employees/Register";
 
 		}
+		
+		model.addAttribute("user", new User());
 		userService.createUser(user);
 		
 		return "employees/sourcecode";

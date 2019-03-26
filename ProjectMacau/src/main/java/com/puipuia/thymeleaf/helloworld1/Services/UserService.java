@@ -20,9 +20,9 @@ public class UserService {
 		BCryptPasswordEncoder  encoder = new  BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword())); 
 		Role userRole = new Role("USER");
-		List<Role> roles = new ArrayList<>();
-		roles.add(userRole);
-		user.setRoles(roles);
+		List<Role> role = new ArrayList<>();
+		role.add(userRole);
+		user.setRoles(role);
 		userRepository.save(user);
 	}
 	
@@ -30,9 +30,9 @@ public class UserService {
 		BCryptPasswordEncoder  encoder = new  BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword())); 
 		Role userRole = new Role("ADMIN");
-		List<Role> roles = new ArrayList<>();
-		roles.add(userRole);
-		user.setRoles(roles);
+		List<Role> role = new ArrayList<>();
+		role.add(userRole);
+		user.setRoles(role);
 		userRepository.save(user);
 	}
 	

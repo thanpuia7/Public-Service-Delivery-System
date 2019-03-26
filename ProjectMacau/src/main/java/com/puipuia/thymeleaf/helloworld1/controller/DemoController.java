@@ -18,7 +18,7 @@ public class DemoController {
 		return "employees/sourcecode";
 	}
 	
-	@GetMapping("/Login") 
+	@GetMapping("/login") 
 	public String showLoginForm() {
 		
 		return "employees/Login";  
