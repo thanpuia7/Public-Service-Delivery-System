@@ -24,6 +24,19 @@ public class DemoController {
 		return "employees/Login";  
 	}
 	
+	@GetMapping("/hello1")
+	public String sayHello1() {
+		
+		
+		
+		return "employees/helloworld";
+	}
+	
+	@GetMapping("/electric") 
+	public String showElectricForm() {
+		
+		return "employees/ElectricForm";  
+	}
 	
 	
 }

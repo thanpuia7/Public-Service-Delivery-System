@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <!-- Required meta tags -->
@@ -30,19 +31,30 @@
 	<h1> <i class="fa fa-laptop"></i><span class="title-color">Public Service Delivery System</span></h1>
 	</div>
 	
-	<div>
+	
+	
+	<ul>
+	<li>
 	<form th:action="@{/register}" method="get">
 	<button type="submit" class="btn btn-info col-2">Sign Up</button>
 	</form>
-	</div>
+	</li>
 	
-	
-	<div>
+	<li class="nav-item" sec:authorize="(hasRole('ROLE_USER'))">
 	<form th:action="@{/login}" method="get">
 	<button type="submit" class="btn btn-info col-2">Login</button>
 	</form>
-	</div>
+	</li>
 	
+	<li class="nav-item" sec:authorize="(hasRole('ROLE_USER'))">
+	<p> Welcome</p>
+	</li>
+	</ul>
+	
+	<form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post"  sec:authorize="isAuthenticated()">
+      <input class="form-control mr-sm-2" type="hidden" /> 
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
+    </form>
 	
 	<div class="search_my">
 		<form>
@@ -149,9 +161,9 @@
 				<i class="fa fa-keyboard-o fa-2x"></i>
 				<h4>Electricity</h4>
 				<p>Electric bill pekna </p>
-				<button type="button" class="more-bttn" data-toggle="modal" data-target="#exampleModal">
-				read more
-				</button>
+				
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
 			</div>
 			
 			

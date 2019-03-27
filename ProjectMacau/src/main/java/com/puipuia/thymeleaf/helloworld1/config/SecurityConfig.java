@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource)
 		.usersByUsernameQuery("select email as principal, password as credentails, true from user where email=?")
-		.authoritiesByUsernameQuery("select user_email as principal, role_name as role from user_roles where user_email=?")
+		.authoritiesByUsernameQuery("select user_email as principal, role_name as role from user_role where user_email=?")
 		.passwordEncoder(passwordEncoder()).rolePrefix("ROLE_");  
 		
 	}
@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.authorizeRequests().antMatchers("/register", "/", "/about", "/login", "/css/**", "/hello", "/webjars/**").permitAll()
+		http.authorizeRequests().antMatchers("/register", "/", "/about", "/login", "/css/**", "/hello", "/electric", "/webjars/**").permitAll()
 				.antMatchers("/profile").hasAnyRole("USER,ADMIN")
 				.antMatchers("/users","/addTask").hasRole("ADMIN")
 				.and().formLogin().loginPage("/login").permitAll()
